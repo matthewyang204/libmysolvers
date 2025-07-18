@@ -4,3 +4,6 @@
  # Supported equation types
 **Quadratic:**
 - standard single quadratic equation
+
+**Linear**
+- standard two-equation set
