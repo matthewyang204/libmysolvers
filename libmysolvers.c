@@ -68,4 +68,4 @@ double linear_solver(int val, double a1, double b1, double c1, double a2, double
             exit(EXIT_FAILURE);
         }
     }
-} 
+}
