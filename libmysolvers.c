@@ -46,8 +46,6 @@ double linear_solver(int val, double a1, double b1, double c1, double a2, double
     double y;
 
     double d = a1 * b2 - a2 * b1;
-    x = (c1 * b2 - c2 * b1) / d;
-    y = (a1 * c2 - a2 * c1) / d;
 
     if (d == 0) {
         if (x == 0 && y == 0) {
@@ -58,6 +56,8 @@ double linear_solver(int val, double a1, double b1, double c1, double a2, double
             exit(EXIT_FAILURE);
         }
     } else {
+        x = (c1 * b2 - c2 * b1) / d;
+        y = (a1 * c2 - a2 * c1) / d;
         if (val == 0) {
             return x;
         } else if (val == 1) {
