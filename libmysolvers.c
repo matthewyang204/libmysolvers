@@ -53,9 +53,9 @@ double linear_solver(int val, double a1, double b1, double c1, double a2, double
         if (fabs(a1 * c2 - a2 * c1) < EPS && fabs(b1 * c2 - b2 * c1) < EPS) {
             fprintf(stderr, "ERROR: The system has infinitely many solutions (the two equations describe the same line).\n");
         } else {
-            fprintf(stderr, "ERROR: The system has no solution.\n");
-            exit(EXIT_FAILURE);
+            fprintf(stderr, "ERROR: The system has no solution (the lines are parallel).\n");
         }
+        exit(EXIT_FAILURE);
     } else {
         x = (c1 * b2 - c2 * b1) / d;
         y = (a1 * c2 - a2 * c1) / d;
