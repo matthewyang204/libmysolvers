@@ -41,7 +41,7 @@ double quadratic_single_pos_solver(double a, double b, double c) {
     double x = (-b + sqrt(discriminant)) / (2 * a);
     return x;
 }
- // This uses cramer's rule to solve a system of linear equations
+// This uses cramer's rule to solve a system of linear equations
  // This can only solve a system of two linear equations with two variables
 double linear_solver(int val, double a1, double b1, double c1, double a2, double b2, double c2) {
     double x;
