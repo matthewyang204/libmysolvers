@@ -8,6 +8,8 @@
 #include <math.h>
 #include <string.h>
 
+const double EPS = 1e-9;
+
 double quadratic_single_neg_solver(double a, double b, double c) {
     if (a == 0) {
         fprintf(stderr, "ERROR: Coefficient 'a' cannot be zero in a quadratic equation, or else it will not be an equation at all.\n");
@@ -47,10 +49,9 @@ double linear_solver(int val, double a1, double b1, double c1, double a2, double
 
     double d = a1 * b2 - a2 * b1;
 
-    if (d == 0) {
-        if (x == 0 && y == 0) {
-            fprintf(stderr, "ERROR: The system has infinitely many solutions.\n");
-            exit(EXIT_FAILURE);
+    if (fabs(d) < EPS) {
+        if (fabs(a1 * c2 - a2 * c1) < EPS && fabs(b1 * c2 - b2 * c1) < EPS) {
+            fprintf(stderr, "ERROR: The system has infinitely many solutions (the two equations describe the same line).\n");
         } else {
             fprintf(stderr, "ERROR: The system has no solution.\n");
             exit(EXIT_FAILURE);
