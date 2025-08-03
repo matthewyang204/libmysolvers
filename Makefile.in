@@ -37,3 +37,5 @@ dist: clean
 	find $(GNSRCDIR) -type d -name ".git" -exec rm -rf {} +
 	tar -cvJf dist/dproc-1.1.1.tar.xz -C $(GNSRCDIR) .
 	rm -rf $(GNSRCDIR)
+
+.PHONY: all build clean install uninstall dist
