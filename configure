@@ -75,18 +75,6 @@ else
     echo "$PREFIX"
 fi
 
-# Check for prefix
-printf "Checking for prefix..."
-if printf '%s\n' "$@" | grep -q -- "^--prefix="; then
-    prefix_arg=$(printf '%s\n' "$@" | grep -m1 '^--prefix=')
-    prefix_path="${prefix_arg#--prefix=}"
-    PREFIX=$prefix_path
-    echo "$PREFIX"
-else
-    PREFIX="/usr/local"
-    echo "$PREFIX"
-fi
-
 # Check OS type in order to determine proper sed
 # Detect OS and set sed -i syntax
 if [[ "$OSTYPE" == "darwin"* ]]; then
