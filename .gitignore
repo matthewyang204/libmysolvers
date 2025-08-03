@@ -54,3 +54,45 @@ dkms.conf
 # Visual Studio Code annoyances
 .vscode/
 .vscode-test/
+
+# macOS annoyances
+.DS_Store
+._*
+*DS_Store
+
+# GNU nano annoyances
+*.swp
+*.save
+
+# Configure files
+.configured
+
+# Build junk
+bin/
+build/
+obj/
+
+# JetBrains annoyances
+.idea
+
+# VS Code annoyances
+.vscode/
+
+# source distributions
+dist/
+
+# C build files
+*.o
+*.so
+*.dylib
+*.a
+*.exe
+*.out
+*.dll
+*.lib
+
+# C object files
+*.obj
+
+# Makefiles
+Makefile
