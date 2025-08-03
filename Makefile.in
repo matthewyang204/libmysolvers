@@ -28,3 +28,12 @@ clean:
 uninstall:
 	rm -rf $(PREFIX)/include
 	rm -rf $(PREFIX)/lib
+
+dist: clean
+	rm -rf $(GNSRCDIR)
+	cp -R . $(GNSRCDIR)
+	mkdir -p dist
+	find $(GNSRCDIR) -type d -name ".git" -print
+	find $(GNSRCDIR) -type d -name ".git" -exec rm -rf {} +
+	tar -cvJf dist/dproc-1.1.1.tar.xz -C $(GNSRCDIR) .
+	rm -rf $(GNSRCDIR)
