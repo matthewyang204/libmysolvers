@@ -24,3 +24,7 @@ install:
 
 clean:
 	rm -rf obj
+
+uninstall:
+	rm -rf $(PREFIX)/include
+	rm -rf $(PREFIX)/lib
