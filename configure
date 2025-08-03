@@ -1,0 +1,109 @@
+#!/usr/bin/env bash
+
+# Check for make
+printf "Checking for make..."
+if ! command -v make &> /dev/null
+then
+    echo "not found"
+    echo "make not found. Please install it to continue."
+    exit 1
+else
+    echo "found"
+fi
+
+# Check for a C compiler
+printf "Checking for C compiler..."
+if [ -n "$CC" ] && command -v $CC &> /dev/null
+then
+    echo "$CC"
+elif command -v gcc &> /dev/null
+then
+    CC=gcc
+    echo "gcc"
+elif command -v clang &> /dev/null
+then
+    CC=clang
+    echo "clang"
+elif command -v cc &> /dev/null
+then
+    CC=cc
+    echo "cc"
+else
+    echo "not found"
+    echo "No C compiler found. Please install gcc, clang, or some C compiler to continue."
+    exit 1
+fi
+
+mkdir -p /tmp/e10b5eccac1ecb4e8706e3898719b197a1e9d10d65e860192d38155cb31233ea-configure
+cd /tmp/e10b5eccac1ecb4e8706e3898719b197a1e9d10d65e860192d38155cb31233ea-configure
+for header in stdio.h stdlib.h math.h; do
+    printf "Checking for $header..."
+    echo "#include <$header>" > test.c
+    echo "int main() { return 0; }" >> test.c
+    if $CC -c test.c -o test.o 2>/dev/null; then
+        echo "found"
+    else
+        echo "not found"
+        echo "Header file $header not found. Please ensure it is installed and in your include path."
+        exit 1
+    fi
+    rm -f test.c test.o
+done
+cd - > /dev/null 2>&1
+rm -rf /tmp/e10b5eccac1ecb4e8706e3898719b197a1e9d10d65e860192d38155cb31233ea-configure
+
+# Check for ar
+printf "Checking for ar..."
+if command -v ar &> /dev/null
+then
+    echo "found"
+else
+    echo "not found"
+    echo "ar not found. Please install it to continue. It usually comes with the coreutils package."
+    exit 1
+fi
+
+# Check for prefix
+printf "Checking for prefix..."
+if printf '%s\n' "$@" | grep -q -- "^--prefix="; then
+    prefix_arg=$(printf '%s\n' "$@" | grep -m1 '^--prefix=')
+    prefix_path="${prefix_arg#--prefix=}"
+    PREFIX=$prefix_path
+    echo "$PREFIX"
+else
+    PREFIX="/usr/local"
+    echo "$PREFIX"
+fi
+
+# Check for prefix
+printf "Checking for prefix..."
+if printf '%s\n' "$@" | grep -q -- "^--prefix="; then
+    prefix_arg=$(printf '%s\n' "$@" | grep -m1 '^--prefix=')
+    prefix_path="${prefix_arg#--prefix=}"
+    PREFIX=$prefix_path
+    echo "$PREFIX"
+else
+    PREFIX="/usr/local"
+    echo "$PREFIX"
+fi
+
+# Check OS type in order to determine proper sed
+# Detect OS and set sed -i syntax
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    SED_INPLACE=("sed" "-i" "")
+else
+    SED_INPLACE=("sed" "-i")
+fi
+
+# Patching Makefile
+echo "Executing depfiles commands..."
+cp Makefile.in Makefile
+"${SED_INPLACE[@]}" "s#@CC@#$CC#g" Makefile
+"${SED_INPLACE[@]}" "s#@PREFIX@#$PREFIX#g" Makefile
+rm -rf /tmp/e10b5eccac1ecb4e8706e3898719b197a1e9d10d65e860192d38155cb31233ea
+
+# Setting up
+export CC="$CC"
+
+touch .configured
+echo "Configuration complete. Run 'make' to build."
