@@ -7,3 +7,6 @@
 
 **Linear**
 - standard two-equation set
+
+**Other calculations**
+- Triangle centroids
