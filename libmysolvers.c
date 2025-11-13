@@ -71,11 +71,8 @@ double linear_solver(int val, double a1, double b1, double c1, double a2, double
 }
 
 double triangle_centroid(int val, int x1, int y1, int x2, int y2, int x3, int y3){
-    double centroid_x
-    double centroid_y
-
-    centroid_x = (x1 + x2 + x3) / 3.0;
-    centroid_y = (y1 + y2 + y3) / 3.0;
+    double centroid_x = (x1 + x2 + x3) / 3.0;
+    double centroid_y = (y1 + y2 + y3) / 3.0;
 
     if (val == 0) {
         return centroid_x;
