@@ -16,13 +16,17 @@ all: build
 build: libmysolvers.h libmysolvers.c
 	mkdir -p obj
 	$(CC) $(CFLAGS) -c libmysolvers.c -o obj/libmysolvers.o
+	$(CC) $(CFLAGS) -c libcharge.c -o obj/libcharge.o
 	ar rcs obj/libmysolvers.a obj/libmysolvers.o
+	ar rcs obj/libcharge.a obj/libcharge.o
 
 install:
 	mkdir -p $(PREFIX)/include
 	mkdir -p $(PREFIX)/lib
 	cp libmysolvers.h $(PREFIX)/include/
+	cp libcharge.h $(PREFIX)/include/
 	cp obj/libmysolvers.a $(PREFIX)/lib/
+	cp obj/libcharge.a $(PREFIX)/lib/
 
 clean:
 	rm -rf obj
