@@ -22,3 +22,19 @@ double get_I(double V, double R){
     double current = V / R;
     return current;
 }
+
+double get_watt(double V, double IR, char* IorR){
+    if (strcmp(IorR, "I") == 0){
+        double watt = V * IR;
+        return watt;
+    }
+    else if (strcmp(IorR, "R") == 0){
+        double I = get_I(V, IR);
+        double watt = V * I;
+        return watt;
+    }
+    else {
+        fprintf(stderr, "Error: Invalid parameter for IorR. Use 'I' for current or 'R' for resistance.\n");
+        exit(EXIT_FAILURE);
+    }
+}
