@@ -32,8 +32,10 @@ clean:
 	rm -rf obj
 
 uninstall:
-	rm -rf $(PREFIX)/include
-	rm -rf $(PREFIX)/lib
+	rm -rf $(PREFIX)/include/libmysolvers.h
+	rm -rf $(PREFIX)/include/libcharge.h
+	rm -rf $(PREFIX)/lib/libmysolvers.a
+	rm -rf $(PREFIX)/lib/libcharge.a
 
 dist: clean
 	rm -rf $(GNSRCDIR)
