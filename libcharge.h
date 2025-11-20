@@ -6,3 +6,5 @@
 #define LIBCHARGE_H
 
 double get_volt(double I, double R);
+double get_R(double V, double I);
+double get_I(double V, double R);

@@ -12,3 +12,13 @@ double get_volt(double I, double R){
     double volt = I * R;
     return volt;
 }
+
+double get_R(double V, double I){
+    double resistance = V / I;
+    return resistance;
+}
+
+double get_I(double V, double R){
+    double current = V / R;
+    return current;
+}
