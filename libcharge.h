@@ -4,3 +4,5 @@
 
 #ifndef LIBCHARGE_H
 #define LIBCHARGE_H
+
+double get_volt(double I, double R);

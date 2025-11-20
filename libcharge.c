@@ -8,3 +8,7 @@
 #include <math.h>
 #include <string.h>
 
+double get_volt(double I, double R){
+    double volt = I * R;
+    return volt;
+}
