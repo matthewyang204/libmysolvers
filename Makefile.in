@@ -13,7 +13,7 @@ GNSRCDIR ?= /tmp/e10b5eccac1ecb4e8706e3898719b197a1e9d10d65e860192d38155cb31233e
 
 all: build
 
-build: libmysolvers.h libmysolvers.c
+build: libmysolvers.h libmysolvers.c libcharge.h libcharge.c
 	mkdir -p obj
 	$(CC) $(CFLAGS) -c libmysolvers.c -o obj/libmysolvers.o
 	$(CC) $(CFLAGS) -c libcharge.c -o obj/libcharge.o
